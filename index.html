@@ -7,6 +7,52 @@
 	<meta name="description" content="GREENLIGHT: AI-powered casting, location scouting, and production planning for the entertainment industry." />
 	<meta name="keywords" content="GREENLIGHT, casting, production, AI, film, entertainment, SaaS" />
 	<link rel="stylesheet" href="assets/css/main.css" />
+	<style>
+		/* Subtle fade-in for sections */
+		section { opacity: 0; transform: translateY(40px); transition: opacity 0.8s cubic-bezier(.4,0,.2,1), transform 0.8s cubic-bezier(.4,0,.2,1); }
+		section.visible { opacity: 1; transform: none; }
+		/* Button hover animation */
+		.button { transition: background 0.3s, color 0.3s, box-shadow 0.3s; }
+		.button:hover, .button:focus { box-shadow: 0 4px 24px 0 rgba(0,200,120,0.12); transform: translateY(-2px) scale(1.03); }
+		/* Vibrant accent for hero */
+		.intro h1 { background: linear-gradient(90deg, #00e676 0%, #00bfae 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+		/* Animated underline for section headers */
+		section header h2 { position: relative; display: inline-block; }
+		section header h2::after {
+			content: "";
+			display: block;
+			width: 60%;
+			height: 3px;
+			background: linear-gradient(90deg, #00e676 0%, #00bfae 100%);
+			margin: 8px auto 0 auto;
+			border-radius: 2px;
+			animation: underlineGrow 1.2s cubic-bezier(.4,0,.2,1) 0.2s both;
+		}
+		@keyframes underlineGrow {
+			from { width: 0; opacity: 0; }
+			to { width: 60%; opacity: 1; }
+		}
+		/* Footer modern layout */
+		#footer {
+			background: #181c20;
+			color: #fff;
+			padding: 2.5em 0 1.2em 0;
+			margin-top: 3em;
+		}
+		.footer-links {
+			display: flex;
+			justify-content: center;
+			gap: 3em;
+			flex-wrap: wrap;
+			margin-bottom: 1.5em;
+		}
+		.footer-section h4 { color: #00e676; margin-bottom: 0.7em; }
+		.footer-section ul { list-style: none; padding: 0; margin: 0; }
+		.footer-section ul li { margin-bottom: 0.5em; }
+		.footer-section ul li a { color: #fff; opacity: 0.85; transition: opacity 0.2s; }
+		.footer-section ul li a:hover { opacity: 1; color: #00e676; }
+		.copyright { text-align: center; color: #aaa; font-size: 0.95em; margin-top: 1.5em; }
+	</style>
 </head>
 <body class="is-preload">
 
@@ -155,9 +201,9 @@
 				<h4>Product</h4>
 				<ul>
 					<li><a href="#features">Features</a></li>
-					<li><a href="#pricing">Pricing</a></li>
+					<li><a href="#how-it-works">How It Works</a></li>
 					<li><a href="#demo">Demo</a></li>
-					<li><a href="#api">API</a></li>
+					<li><a href="#pricing">Pricing</a></li>
 				</ul>
 			</div>
 			<div class="footer-section">
@@ -167,6 +213,14 @@
 					<li><a href="#careers">Careers</a></li>
 					<li><a href="#press">Press</a></li>
 					<li><a href="#contact">Contact</a></li>
+				</ul>
+			</div>
+			<div class="footer-section">
+				<h4>Resources</h4>
+				<ul>
+					<li><a href="#testimonials">Testimonials</a></li>
+					<li><a href="#">Blog</a></li>
+					<li><a href="#">Help Center</a></li>
 				</ul>
 			</div>
 			<div class="footer-section">
@@ -190,6 +244,30 @@
 <script src="assets/js/breakpoints.min.js"></script>
 <script src="assets/js/util.js"></script>
 <script src="assets/js/main.js"></script>
+<script>
+// Animate sections on scroll
+function revealSections() {
+	document.querySelectorAll('section').forEach(section => {
+		const rect = section.getBoundingClientRect();
+		if (rect.top < window.innerHeight - 80) {
+			section.classList.add('visible');
+		}
+	});
+}
+window.addEventListener('scroll', revealSections);
+window.addEventListener('DOMContentLoaded', revealSections);
+// Animate hero image
+const heroImg = document.querySelector('.intro .image img');
+if(heroImg) {
+	heroImg.style.opacity = 0;
+	heroImg.style.transform = 'scale(1.08)';
+	heroImg.onload = () => {
+		heroImg.style.transition = 'opacity 1.2s cubic-bezier(.4,0,.2,1), transform 1.2s cubic-bezier(.4,0,.2,1)';
+		heroImg.style.opacity = 1;
+		heroImg.style.transform = 'scale(1)';
+	};
+}
+</script>
 
 </body>
 </html>
