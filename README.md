@@ -1,4 +1,4 @@
-# greenlight
+# Greenlight Studio
 This repository contains the source code for **Greenlight**, a website project serving as the product landing page for the Greenlight software.
 
 ## Overview
