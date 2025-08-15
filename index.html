@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title> Unleash Creativity </title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="shortcut icon" href="favicon.ico" />
+		<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet" />
+		<style>
+			/* Local overrides added during refactor (can be moved to SCSS and recompiled) */
+			ul.highlights { list-style: none; padding: 0; margin: 1.5em 0 0 0; }
+			ul.highlights li { margin: 0 0 0.75em 0; }
+			body, input, button, select, textarea { font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif; font-weight: 300; letter-spacing: 0.2px; }
+			h1, h2, h3, h4, h5, h6 { font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif; font-weight: 500; letter-spacing: 0; }
+			/* Modal styles */
+			.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.75); display: none; align-items: center; justify-content: center; z-index: 10000; padding: 2rem; }
+			.modal-overlay.active { display: flex; }
+			.modal { background: #111; border: 1px solid rgba(255,255,255,0.25); border-radius: 10px; width: 100%; max-width: 640px; box-shadow: 0 10px 34px -4px rgba(0,0,0,0.6); position: relative; overflow: hidden; }
+			.modal header { padding: 1.25rem 1.25rem 0.5rem; }
+			.modal header h3 { margin: 0; font-size: 1.4rem; }
+			.modal .modal-body { padding: 0 1.25rem 1.25rem; display: grid; gap: 1rem; }
+			.modal .close-btn { position: absolute; top: 0.6rem; right: 0.75rem; background: none; border: 0; color: #fff; font-size: 1.25rem; cursor: pointer; }
+			.modal form { display: flex; flex-direction: column; gap: 0.75rem; }
+			.modal form input[type=text], .modal form textarea { width: 100%; padding: 0.65rem 0.8rem; background:#1b1b1b; border:1px solid rgba(255,255,255,0.2); border-radius:6px; color:#fff; font-size:0.95rem; }
+			.modal form input[type=file] { font-size: 0.85rem; }
+			.modal .preview { width: 100%; aspect-ratio: 16/9; background:#000 center/cover no-repeat; border:1px solid rgba(255,255,255,0.15); border-radius:6px; display:flex; align-items:center; justify-content:center; color:#666; font-size:0.85rem; }
+			.modal .actions { display:flex; gap:.75rem; justify-content:flex-end; }
+			.modal .actions button { background:#1cb495; color:#fff; border:0; padding:0.6rem 1.1rem; border-radius:5px; cursor:pointer; font-weight:600; letter-spacing:.5px; }
+			.modal .actions button.secondary { background:#333; }
+			.feature-trigger { color:#1cb495; text-decoration:underline; cursor:pointer; }
+			.feature-trigger:hover { color:#22d9b5; }
+			@media (max-width: 560px){ .modal { max-width:100%; } }
+		</style>
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<header id="header">
+				<h2>GO GREENLIGHT</h2>
+				<p>Revolutionizing TV & film casting, location scouting, and production planning
+				through an integrated, user-friendly interface with AI Copilot capabilities.</p>
+				<ul class="highlights" aria-label="Highlights">
+					<li>🤖 AI-Powered Casting <a href="#" class="feature-trigger" data-feature="ai-casting">Find the perfect talent match for your production in seconds.</a>.</li>
+					<li>🤝 Collaborative Platform <a href="#" class="feature-trigger" data-feature="collaboration">Work seamlessly with your team, anywhere in the world.</a>.</li>
+					<li>🛡️ GDPR Compliant <a href="#" class="feature-trigger" data-feature="gdpr">Industry-leading data protection and privacy.</a>.</li>
+					<li>🖥️ Immersive Player View <a href="#" class="feature-trigger" data-feature="player-view">Experience auditions like you're in the cinema.</a>.</li>
+					<li>🎨 Visual Casting Canvas <a href="#" class="feature-trigger" data-feature="canvas">Visualize and compare talent combinations effortlessly.</a>.</li>
+					<li>🔗 End-to-End Management <a href="#" class="feature-trigger" data-feature="end-to-end">Manage your entire casting process from shortlist to final approval.</a>.</li>	
+
+				</ul>
+				<br>
+				<br>
+				<h3>GO GREENLIGHT is a game-changing platform designed to streamline the casting and production</h3>
+				<p>Ready to Transform Your Production? Contact us: contact@gogreenlight.it</p>
+			</header>
+
+		<!-- Footer -->
+			<footer id="footer">
+				<ul class="icons">
+					<li><a href="https://linkedin.com" class="icon brands fa-linkedin"><span class="label" target="_blank">LinkedIN</span></a></li>
+					<li><a href="https://www.youtube.com/" class="icon brands fa-youtube"><span class="label" target="_blank">Youtube</span></a></li>
+				</ul>
+				<ul class="copyright">
+					<li>&copy; <a href="https://www.linkedin.com/in/gogreenlight/" target="_blank"> Go Greenlight Team 2025</a>.</li>
+				</ul>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/main.js"></script>
+			<!-- Modal Root -->
+			<div class="modal-overlay" id="featureModal" aria-hidden="true" role="dialog" aria-modal="true">
+				<div class="modal" role="document">
+					<button class="close-btn" data-close>&times;</button>
+					<header><h3 id="featureModalTitle">Feature</h3></header>
+					<div class="modal-body">
+						<div class="preview" id="featurePreview">Image Preview</div>
+						<p id="featureDescription" style="margin:0; font-size:0.9rem; line-height:1.4; color:rgba(255,255,255,0.8);"></p>
+						<form id="featureForm">
+							<input type="text" id="featureText" placeholder="Add your note or description" />
+							<input type="file" id="featureImage" accept="image/*" />
+							<div class="actions">
+								<button type="button" class="secondary" data-close>Close</button>
+								<button type="submit">Save</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+	</body>
+</html>
